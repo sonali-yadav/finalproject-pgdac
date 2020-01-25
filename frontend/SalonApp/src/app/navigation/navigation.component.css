@@ -1,0 +1,34 @@
+.bg_teal {
+    background-color: #19B5BC;
+}
+.pacifico {
+    font-family: 'Pacifico', cursive;
+}
+#navbrand {
+    font-size: large;
+}
+.top_header {
+    background-color: #1E1F29;
+    padding: 0.5em 0.5em 0.2em 0.5em;
+    color: white;
+}
+.top_header > ul > li {
+    display: inline-block;
+}
+.mid_header {
+    background-color: #15161D;
+    padding: 2em 0 1em 4em;
+}
+.brandname {
+    color: white;
+    font-size: 2em;
+}
+.navi {
+    box-sizing: border-box;
+    /* border-bottom: 1px solid #cacaca; */
+}
+.nav-item:hover {
+    background-color: #1E1F29;
+    border-radius: 12px;
+    padding: 1px 5px;
+}

@@ -1,0 +1,1 @@
+INDEX VERSION 1.131+D:\dac\son\.metadata\.plugins\org.eclipse.jdt.core

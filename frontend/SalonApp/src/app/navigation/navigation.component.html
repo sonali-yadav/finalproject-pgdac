@@ -1,0 +1,76 @@
+<div>
+    <header>
+        <div class="top_header">
+            <ul style="margin-bottom: 0;">
+                <li class="nav-link active"><span><i class='fa fa-phone'></i>+91 123123123</span></li>
+                <li class="nav-link active"><span><i class='fa fa-envelope'></i>foobarcdac@gmail.com</span></li>
+                <li class="nav-link active"><span><i class='fa fa-map-marker'></i>Pune, Maharashtra</span></li>
+                <li class="nav-link active"><span><i class='fa fa-user'></i>Login | Sign Up</span></li>
+            </ul>
+        </div>
+        <div class="mid_header">
+            <a class="navbar-brand pacifico brandname" [routerLink]='["/login"]'>The Local Barber</a>
+        </div>
+    </header>
+    <!-- Navigation -->
+    <nav class="navbar navi navbar-expand-lg navbar-dark bg_teal">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div *ngIf="role==1; else elseBlock" class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link  active" [routerLink]='["/catalog"]'>Make a booking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" [routerLink]='["/cart"]'>My Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" [routerLink]='["/orders"]'>My Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" [routerLink]='["/find"]'>Find me a salon</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" [routerLink]='["/homeservices"]'>Home services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" [routerLink]='["/caccount"]'>Account</a>
+                    </li>
+                </ul>
+            </div>
+            <ng-template #elseBlock>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" [routerLink]='["/actions"]'>Confirm Bookings</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" [routerLink]='["/payments"]'>Link UPI</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" [routerLink]='["/orders"]'>Recent Orders</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" [routerLink]='["/bookings"]'>Current Bookings</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" [routerLink]='["/services"]'>My Services</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" [routerLink]='["/analysis"]'>Analysis</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" [routerLink]='["/reviews"]'>Reviews</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" [routerLink]='["/saccount"]'>Account</a>
+                        </li>
+                    </ul>
+                </div>
+            </ng-template>
+        </div>
+    </nav>
+</div>
