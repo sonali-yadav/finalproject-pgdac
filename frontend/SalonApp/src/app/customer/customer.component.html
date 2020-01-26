@@ -1,13 +1,87 @@
-<p>customer works!</p>
-
-<div class="container">
+<div class="container mycontainer">
     <div>
-        <div>{{c.firstName}} 
-            {{c.lastName}} 
-            {{c.email}} 
-            {{c.contact1}} 
-            {{c.contact2}} 
-            {{c.pk}}
+        <form #customerForm="ngForm" (ngSubmit)="handleCustomerData(customerForm.value)">
+            <div>
+                <input type="hidden" name="pk" id="pk" [(ngModel)]="customer.pk">
+                <div><label class="label" for="firstName">First Name</label></div>
+                <div>
+                    <input class="form-control" type="text" name="firstName" id="firstName"
+                        [(ngModel)]="customer.firstName" required #trackName="ngModel">
+                    <p class="alert" *ngIf="!trackName.valid && trackName.touched">this is required!</p>
+                </div>
+            </div>
+            <div>
+                <div><label class="label" for="lastName">Last Name</label></div>
+                <div>
+                    <input class="form-control" type="text" name="lastName" id="lastName"
+                        [(ngModel)]="customer.lastName" required #trackName="ngModel">
+                    <p class="alert" *ngIf="!trackName.valid && trackName.touched">this is required!</p>
+                </div>
+            </div>
+            <div>
+                <div><label class="label" for="email">Email</label></div>
+                <div>
+                    <input class="form-control" type="email" name="email" id="email" [(ngModel)]="customer.email"
+                        required #trackName="ngModel" [email]="true">
+                    <p class="alert" *ngIf="!trackName.valid && trackName.touched">this is required check it!</p>
+                </div>
+            </div>
+            <div>
+                <div><label class="label" for="contact1">Contact No.</label></div>
+                <div>
+                    <input class="form-control" type="text" name="contact1" id="contact1"
+                        [(ngModel)]="customer.contact1" required #trackName="ngModel">
+                    <p class="alert" *ngIf="!trackName.valid && trackName.touched">this is required!</p>
+                </div>
+            </div>
+            <div>
+                <div><label class="label" for="contact2">Alternate Contact No.</label></div>
+                <div>
+                    <input class="form-control" type="text" name="contact2" id="contact2"
+                        [(ngModel)]="customer.contact2">
+                </div>
+            </div>
+            <div>
+                <div><label class="label">Gender</label></div>
+                <div>
+                    <input class="radio-inline" type="radio" name="gender" id="genderM"
+                        [checked]="customer.gender === 'Male'" value="Male" (click)="setGender('Male')"><label
+                        for="genderM" (click)="setGender('Male')">Male</label>
+                    <input class="radio-inline" type="radio" name="gender" id="genderF"
+                        [checked]="customer.gender === 'Female'" value="Female" (click)="setGender('Female')"><label
+                        for="genderF" (click)="setGender('Female')">Female</label>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <input type="submit" class="btn btn-primary btn-block" value="Save"
+                        [disabled]="!customerForm.form.valid">
+                </div>
+                <div><button class="btn btn-secondary btn-block" type="reset">Reset</button></div>
+            </div>
+        </form>
+    </div>
+    <button *ngIf="loggedin" type="button" class="btn btn-light alert" data-toggle="modal" data-target="#exampleModal">
+        Delete My Account
+    </button>
+</div>
+<div class="modal" tabindex="-1" id="exampleModal" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Account Deactivation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>We hate to see you go :-(</p>
+                <p>Are you sure you want to delete?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)=deactivate()>Yes, Delete</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
         </div>
     </div>
 </div>

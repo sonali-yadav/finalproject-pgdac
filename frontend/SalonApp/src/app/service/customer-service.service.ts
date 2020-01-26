@@ -11,6 +11,7 @@ export class Customer {
     public email: string,
     public contact1: string,
     public contact2: string = "",
+    public gender:string,
     public activeDeactive:number
   ) { }
 }
@@ -22,16 +23,20 @@ export class CustomerServiceService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getCustomerDetails(id) {
+  public getCustomerDetails(pk) {
     console.log("test rest api call");
-    return this.httpClient.get<Customer[]>('http://localhost:8080/salon/customer/'+id);
+    return this.httpClient.get<Customer>('http://localhost:8080/salon/customer/profile/'+pk);
   }
 
   public deactivateCustomer(customer) {
-    return this.httpClient.get<String>('http://localhost:8080/salon/customer/deactivate/' + customer.pk);
+    return this.httpClient.get<string>('http://localhost:8080/salon/customer/deactivate/' + customer.pk);
   }
 
   public addCustomer(cust) {
-    return this.httpClient.post<String>('http://localhost:8080/salon/customer/add',cust);
+    return this.httpClient.post<number>('http://localhost:8080/salon/customer/add',cust);
+  }
+
+  public updateCustomerDetails(cust) {
+    return this.httpClient.put<Customer>('http://localhost:8080/salon/customer/update',cust);
   }
 }

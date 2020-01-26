@@ -5,11 +5,11 @@
                 <li class="nav-link active"><span><i class='fa fa-phone'></i>+91 123123123</span></li>
                 <li class="nav-link active"><span><i class='fa fa-envelope'></i>foobarcdac@gmail.com</span></li>
                 <li class="nav-link active"><span><i class='fa fa-map-marker'></i>Pune, Maharashtra</span></li>
-                <li class="nav-link active"><span><i class='fa fa-user'></i>Login | Sign Up</span></li>
+                <li class="nav-link active"><span><a [routerLink]='["/login"]' style="color:#fff;"><i class='fa fa-user'></i>Login</a> | <a  style="color:#fff;" [routerLink]='["/signup"]'>Sign Up</a></span></li>
             </ul>
         </div>
         <div class="mid_header">
-            <a class="navbar-brand pacifico brandname" [routerLink]='["/login"]'>The Local Barber</a>
+            <a class="navbar-brand pacifico brandname" [routerLink]='["/home"]'>The Local Barber</a>
         </div>
     </header>
     <!-- Navigation -->

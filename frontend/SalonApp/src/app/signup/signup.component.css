@@ -1,0 +1,11 @@
+.cust_block, .salon_block {
+    width: 25rem;
+    border: 1px solid #cacaca;
+}
+.signup_block {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1em;
+}

@@ -8,7 +8,19 @@ Colors:
 */
 @import "~bootstrap/dist/css/bootstrap.css";
 
+.mycontainer {
+	margin: 1em auto;
+}
 i {
 	color:#19B5BC;
 	margin-right: 0.5em;
+}
+
+.inlineb {
+	display: inline-block;
+}
+footer {
+	position: absolute;
+    bottom: 0;
+    width:100%;
 }
