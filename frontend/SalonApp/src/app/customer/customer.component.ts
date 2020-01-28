@@ -1,6 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { CustomerServiceService, Customer } from '../service/customer-service.service';
+import { Component, OnInit, Directive, Input } from '@angular/core';
+import { CustomerServiceService, Customer, Customer1 } from '../service/customer-service.service';
 import { Router } from "@angular/router";
+import { Validator, NG_VALIDATORS, AbstractControl, ValidationErrors } from '@angular/forms';
+
+
+@Directive({
+  selector: '[appCustomPasswordValidator]',
+  providers: [{
+    provide: NG_VALIDATORS,
+    useExisting: CustomPasswordValidator,
+    multi: true
+  }]
+})
+export class CustomPasswordValidator implements Validator {
+
+  @Input() appCustomPasswordValidator: string;
+
+  validate(control: AbstractControl): { [key: string]: any } | null {
+    const controlToCompare = control.parent.get(this.appCustomPasswordValidator);
+    if (controlToCompare && controlToCompare.value !== control.value) {
+      return { 'notEqual': true };
+    }
+    return null;
+  }
+
+}
 
 @Component({
   selector: 'app-customer',
@@ -9,7 +33,8 @@ import { Router } from "@angular/router";
 })
 export class CustomerComponent implements OnInit {
 
-  customer: Customer = new Customer(0, '', '', '', '', '', '', 1);
+  customer: Customer = new Customer(0, '', '', '', '', '', '', 1, '', '');
+  customer1: Customer1 = new Customer1(0, '', '', '', '', '', '', 1, '');
   pk: number = 0;
   deactivated: boolean = false;
   loggedin: boolean = false;
@@ -19,10 +44,11 @@ export class CustomerComponent implements OnInit {
 
   ngOnInit() {
 
-    if(this.loggedin) {
+    if (this.loggedin) {
+      this.pk = 2;
       this.getDetails();
     } else {
-      this.pk=0;
+      this.pk = 0;
     }
 
   }
@@ -33,7 +59,7 @@ export class CustomerComponent implements OnInit {
   }
 
   handleGetDetails(response) {
-    this.customer = new Customer(
+    this.customer1 = new Customer1(
       response.pk,
       response.firstName,
       response.lastName,
@@ -41,9 +67,10 @@ export class CustomerComponent implements OnInit {
       response.contact1,
       response.contact2,
       response.gender,
-      response.activeDeactive);
+      response.activeDeactive,
+      response.password);
     this.g = response.gender;
-    this.pk=response.pk;
+    this.pk = response.pk;
     console.log("g=" + this.g);
   }
 
@@ -56,7 +83,7 @@ export class CustomerComponent implements OnInit {
   //update and update handler
 
   handleUpdate(response) {
-    this.customer = new Customer(
+    this.customer1 = new Customer1(
       response.pk,
       response.firstName,
       response.lastName,
@@ -64,7 +91,8 @@ export class CustomerComponent implements OnInit {
       response.contact1,
       response.contact2,
       response.gender,
-      response.activeDeactive);
+      response.activeDeactive,
+      response.password);
   }
 
   updateCustomer(customer) {
@@ -83,10 +111,10 @@ export class CustomerComponent implements OnInit {
   //main handler
 
   handleCustomerData(c) {
-    if(c.pk!=0) {
+    if (c.pk != 0) {
       this.updateCustomer(c);
     } else {
-      c.gender=this.g;
+      c.gender = this.g;
       this.customerService.addCustomer(c).subscribe(
         response => this.handleAdded(response)
       );

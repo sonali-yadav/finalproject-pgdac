@@ -12,7 +12,22 @@ export class Customer {
     public contact1: string,
     public contact2: string = "",
     public gender:string,
-    public activeDeactive:number
+    public activeDeactive:number,
+    public password:string,
+    public cpassword:string,
+  ) { }
+} 
+export class Customer1 {
+  constructor(
+    public pk: number,
+    public firstName: string,
+    public lastName: string,
+    public email: string,
+    public contact1: string,
+    public contact2: string = "",
+    public gender:string,
+    public activeDeactive:number,
+    public password:string,
   ) { }
 }
 @Injectable({

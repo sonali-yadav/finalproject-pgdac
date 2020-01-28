@@ -5,4 +5,7 @@
     color: red;
     font-size: smaller;
   }
+  form > div {
+    margin-top: 1em;
+  }
   

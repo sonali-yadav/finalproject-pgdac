@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthServiceService } from '../service/auth-service.service';
+import { Router } from '@angular/router';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -7,16 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  username:string="";
-  password:string="";
+  username: string = "";
+  password: string = "";
+  invalidLogin: boolean = false;
 
-  constructor() { }
+  constructor(private Router: Router,private loginService: AuthServiceService) { }
 
   ngOnInit() {
   }
 
-  checkLogin(){
-
+  checkLogin() {
+    if(this.loginService.authenticate(this.username,this.password)) {
+      this.Router.navigate(['']);
+      this.invalidLogin=false;
+    } else {
+      this.invalidLogin=true;
+    }
   }
-
 }

@@ -1,21 +1,25 @@
-<div class="container">
-  <div>
-    <label for="uname">Username</label>
-    <input type="text" class="form-control" [(ngModel)]="username" placeholder="Enter Username" name="uname" required>
-  </div>
-  <div>
-    <label for="psw">Password</label>
-    <input type="password" class="form-control" [(ngModel)]="password" placeholder="Enter Password" name="psw" required>
-  </div>
-  <div>
-    <div><button type="submit" (click)=checkLogin() class="btn btn-primary">Login</button></div>
-    <div>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
+<div class="signup_outer_block">
+  <div class="container signup_block">
+    <div class="cust_block">
+      <h1 class="center" style="text-transform: uppercase;">Log In</h1>
+      <div class="container" class="loginform">
+        <div>
+          <label for="username">Username</label>
+          <input type="text" class="form-control" [(ngModel)]="username" placeholder="Enter Username" name="username"
+            required>
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" class="form-control" [(ngModel)]="password" placeholder="Enter Password"
+            name="password" required>
+        </div>
+        <div>
+          <div><button type="submit" (click)=checkLogin() class="btn mybutton btn-block">Login</button></div>
+        </div>
+        <div>
+          <span class="psw"><a href="#">Forgot password?</a></span>
+        </div>
+      </div>
     </div>
-  </div>
-  <div>
-    <span class="psw"><a href="#">Forgot password?</a></span>
   </div>
 </div>

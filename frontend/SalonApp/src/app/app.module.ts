@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
+import { CustomPasswordValidator } from './customer/customer.component'
+
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { LoginComponent } from './login/login.component';
@@ -15,13 +17,21 @@ import { CustomerComponent } from './customer/customer.component';
 import { SalonComponent } from './salon/salon.component';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
-import { DialogComponent } from './dialog/dialog.component';
+import { LogoutComponent } from './logout/logout.component';
+import { ProductdetailComponent } from './productdetail/productdetail.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { SalonsComponent } from './salons/salons.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'salons', component: SalonsComponent },
+  { path: 'services', component: ProductdetailComponent },
+  { path: 'catalog', component: CatalogComponent },
+  { path: 'logout', component: LogoutComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'caccount', component: CustomerComponent },
-  { path: 'saccount', component: SalonComponent },
+  { path: 'profile', component: CustomerComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'productdetail', component: ProductdetailComponent },
   { path: '**', component: HomeComponent }
 ];
 
@@ -37,7 +47,11 @@ export const routes: Routes = [
     SalonComponent,
     HomeComponent,
     SignupComponent,
-    DialogComponent
+    LogoutComponent,
+    CustomPasswordValidator,
+    DashboardComponent,
+    ProductdetailComponent,
+    SalonsComponent
   ],
   imports: [
     BrowserModule,
