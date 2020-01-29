@@ -1,25 +1,29 @@
 package com.salon.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
+
 @Entity
-@Table(name = "customer_master")
-public class Users extends AbstractEntity {
+@Table(name = "users")
+public class User extends AbstractEntity {
 	// data members
 	private String firstName, lastName, email, gender, contact1, contact2="",password;
-	//private List<Address> addresses;
-	public int activeDeactive=1;
+	public int activeDeactive;
 	private Role role;
+	private List<Salon> salons;
 	
 
 	// default constructor
-	public Users() {
+	public User() {
 		super();
-		//addresses = new ArrayList<>();
-		System.out.println("Customer default constructor called.");
+		salons=new ArrayList<>();
+		System.out.println("User default constructor called.");
 	}
 
-	public Users(String firstName, String lastName, String email, String gender, String contact1, String contact2,
+	public User(String firstName, String lastName, String email, String gender, String contact1, String contact2,
 			int activeDeactive,String password, Role role) {
 		super();
 		this.firstName = firstName;
@@ -31,10 +35,11 @@ public class Users extends AbstractEntity {
 		this.activeDeactive = activeDeactive;
 		this.password=password;
 		this.role=role;
+		salons=new ArrayList<>();
 		
 	}
 
-
+	@Enumerated(EnumType.ORDINAL)
 	public Role getRole() {
 		return role;
 	}
@@ -88,17 +93,6 @@ public class Users extends AbstractEntity {
 		this.contact2 = contact2;
 	}
 
-	/*
-	 * @JsonIgnore
-	 * 
-	 * @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval =
-	 * true) public List<Address> getAddresses() { return addresses; }
-	 * 
-	 * public void setAddresses(List<Address> addresses) { this.addresses =
-	 * addresses; }
-	 * 
-	 */
-	
 	public int getActiveDeactive() {
 		return activeDeactive;
 	}
@@ -124,18 +118,31 @@ public class Users extends AbstractEntity {
 		this.password = password;
 	}
 
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
+	public List<Salon> getSalons() {
+		return salons;
+	}
+
+	public void setSalons(List<Salon> salons) {
+		this.salons = salons;
+	}
+
 	@Override
 	public String toString() {
-		return "Customer [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", contact1="
-				+ contact1 + ", contact2=" + contact2 + /* ", addresses=" + addresses +*/ ", activeDeactive="
-				+ activeDeactive + "]";
+		return "User [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", gender=" + gender
+				+ ", contact1=" + contact1 + ", contact2=" + contact2 + ", password=" + password + ", activeDeactive="
+				+ activeDeactive + ", role=" + role + ", salons=" + salons + "]";
 	}
 	
-	/*
-	 * //helper methods //to add new address public void addAddress(Address a) {
-	 * addresses.add(a); a.setCustomer(); }
-	 * 
-	 * //to remove an address public void removeAddress(Address a) {
-	 * addresses.remove(a); a.setCustomer(null); }
-	 */
+	//helper methods
+	
+	public void addSalon(Salon s) {
+		salons.add(s);
+		s.setUser(this);
+	}
+	
+	public void removeSalon(Salon s) {
+		salons.remove(s);
+		s.setUser(null);
+	}
 }

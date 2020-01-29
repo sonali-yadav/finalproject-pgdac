@@ -3,11 +3,11 @@ package com.salon.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.salon.model.Salon;
+import com.salon.model.User;
 
 @Repository
-public interface SalonRepository extends JpaRepository<Salon, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-	// find salon by email
-	Salon findByEmail(String email);
+	// find customer by email
+	User findByEmail(String email);
 }

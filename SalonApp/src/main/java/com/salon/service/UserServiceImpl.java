@@ -4,26 +4,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.salon.exception.ResourceNotfoundException;
-import com.salon.model.Users;
-import com.salon.repository.CustomerRepository;
+import com.salon.model.User;
+import com.salon.repository.UserRepository;
 
 @Service
-public class CustomerServiceImpl implements CustomerService {
+public class UserServiceImpl implements UserService {
 
 	@Autowired
-	CustomerRepository crepo;
+	UserRepository crepo;
 
 	// get customer details
-	public Users getCustomerDetails(Long pk) {
-		return crepo.findById(pk).orElseThrow(() -> new ResourceNotfoundException("Customer", "pk", pk));
+	public User getUserDetails(Long pk) {
+		return crepo.findById(pk).orElseThrow(() -> new ResourceNotfoundException("User", "pk", pk));
 	}
 
 	// adding a new customer
-	public int createCustomer(Users c) {
+	public int createUser(User c) {
 		
 		//here we will first verify whether this is a new customer
 		//only then allow for sign up
-		Users cust=crepo.findByEmail(c.getEmail());
+		User cust=crepo.findByEmail(c.getEmail());
 		if(cust==null) {
 			crepo.save(c);
 			return 1;
@@ -33,16 +33,16 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	// deactivate a customer
-	public String deactivateCustomer(Long pk) {
-		Users cust = crepo.findById(pk).orElseThrow(() -> new ResourceNotfoundException("Customer", "pk", pk));
+	public String deactivateUser(Long pk) {
+		User cust = crepo.findById(pk).orElseThrow(() -> new ResourceNotfoundException("Customer", "pk", pk));
 		cust.setActiveDeactive(0);
 		crepo.save(cust);
 		return "deactivated";
 	}
 
 	// update customer details
-	public Users updateCustomerDetails(Long pk, Users customer) {
-		Users cust = crepo.findById(pk).orElseThrow(() -> new ResourceNotfoundException("Customer", "pk", pk));
+	public User updateUserDetails(Long pk, User customer) {
+		User cust = crepo.findById(pk).orElseThrow(() -> new ResourceNotfoundException("Customer", "pk", pk));
 		cust.setFirstName(customer.getFirstName());
 		cust.setLastName(customer.getLastName());
 		cust.setEmail(customer.getEmail());
@@ -51,7 +51,7 @@ public class CustomerServiceImpl implements CustomerService {
 		cust.setContact2(customer.getContact2());
 		cust.setActiveDeactive(1);
 
-		Users c = crepo.save(cust);
+		User c = crepo.save(cust);
 		return c;
 	}
 }

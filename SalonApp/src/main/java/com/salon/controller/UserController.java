@@ -14,40 +14,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.salon.model.Users;
-import com.salon.service.CustomerService;
+import com.salon.model.User;
+import com.salon.service.UserService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping(value="/customer")
-public class CustomerController {
+@RequestMapping(value="/user")
+public class UserController {
 	
 	@Autowired
-	CustomerService cservice;
+	UserService cservice;
 	
-	//get customer details
+	//get user details
 	@GetMapping("/profile/{pk}")
-	public Users getCustomer(@PathVariable("pk") Long pk) {
-		return cservice.getCustomerDetails(pk);
+	public User getUser(@PathVariable("pk") Long pk) {
+		return cservice.getUserDetails(pk);
 	}
 	
-	//adding a new customer
+	//adding a new User
 	@PostMapping(value = "/add")
-	public int create(@Valid @RequestBody Users customer) {
-		return cservice.createCustomer(customer);
+	public int create(@Valid @RequestBody User user) {
+		return cservice.createUser(user);
 	}
 	
 	//deactivate a customer
 	@GetMapping(value="/deactivate/{pk}",produces = "application/json")
 	public Map<String,String> deactivate(@PathVariable("pk") Long pk) {
 //		return cservice.deactivateCustomer(pk);
-		return Collections.singletonMap("message",cservice.deactivateCustomer(pk));
+		return Collections.singletonMap("message",cservice.deactivateUser(pk));
 	}
 	
 	//update customer details
 	@PutMapping(value = "/update")
-	public Users update(@RequestBody Users customer) {
-		return cservice.updateCustomerDetails(customer.getPk(), customer);
+	public User update(@RequestBody User user) {
+		return cservice.updateUserDetails(user.getPk(), user);
 	}
 	
 	//cus

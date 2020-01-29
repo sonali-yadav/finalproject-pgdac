@@ -32,18 +32,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-//		http.authorizeRequests()
-//		.antMatchers("/customer/new").hasRole("CUSTOMER")
-//		.antMatchers("/customer/save").hasRole("CUSTOMER")
-//		.antMatchers("/","/**").permitAll()
-//		.and()
-//		.formLogin();
-//		
 		http.authorizeRequests()
-		.antMatchers(HttpMethod.OPTIONS, "/**")
-		.permitAll().anyRequest().authenticated()
+		.antMatchers("/customer/new").hasRole("CUSTOMER")
+		.antMatchers("/customer/save").hasRole("CUSTOMER")
+		.antMatchers("/","/**").permitAll()
 		.and()
-		.httpBasic();
+		.formLogin();
+		
+//		http.authorizeRequests()
+//		.antMatchers(HttpMethod.OPTIONS, "/**")
+//		.permitAll().anyRequest().authenticated()
+//		.and()
+//		.httpBasic();
 		
 		http.csrf().disable();
 		

@@ -50,6 +50,7 @@ footer {
 	border-radius: 8px;
 	text-align: center;
 	padding: 8px 1.5em;
+	font-family: 'Play', sans-serif;
 }
 .box_div {
 	border: 1px solid #cacaca;
@@ -84,4 +85,7 @@ footer {
 .userimg {
 	width: 18rem;
 	height: 18rem;
+}
+input[type="radio"],input[type="checkbox"] {
+	margin: 1px 5px;
 }

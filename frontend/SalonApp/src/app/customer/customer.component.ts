@@ -33,8 +33,8 @@ export class CustomPasswordValidator implements Validator {
 })
 export class CustomerComponent implements OnInit {
 
-  customer: Customer = new Customer(0, '', '', '', '', '', '', 1, '', '');
-  customer1: Customer1 = new Customer1(0, '', '', '', '', '', '', 1, '');
+  customer: Customer = new Customer(0, '', '', '', '', '', '', 0, '', '',0);
+  customer1: Customer1 = new Customer1(0, '', '', '', '', '', '', 0, '',0);
   pk: number = 0;
   deactivated: boolean = false;
   loggedin: boolean = false;
@@ -47,8 +47,6 @@ export class CustomerComponent implements OnInit {
     if (this.loggedin) {
       this.pk = 2;
       this.getDetails();
-    } else {
-      this.pk = 0;
     }
 
   }
@@ -68,7 +66,8 @@ export class CustomerComponent implements OnInit {
       response.contact2,
       response.gender,
       response.activeDeactive,
-      response.password);
+      response.password,
+      response.role);
     this.g = response.gender;
     this.pk = response.pk;
     console.log("g=" + this.g);
@@ -92,7 +91,8 @@ export class CustomerComponent implements OnInit {
       response.contact2,
       response.gender,
       response.activeDeactive,
-      response.password);
+      response.password,
+      response.role);
   }
 
   updateCustomer(customer) {
@@ -104,20 +104,11 @@ export class CustomerComponent implements OnInit {
     );
   }
 
-  handleAdded(response) {
-    this.myrouter.navigate(['login']);
-  }
-
   //main handler
 
   handleCustomerData(c) {
     if (c.pk != 0) {
       this.updateCustomer(c);
-    } else {
-      c.gender = this.g;
-      this.customerService.addCustomer(c).subscribe(
-        response => this.handleAdded(response)
-      );
     }
   }
 
@@ -136,6 +127,4 @@ export class CustomerComponent implements OnInit {
       response => this.handleDeactivation(response)
     );
   }
-
-
 }

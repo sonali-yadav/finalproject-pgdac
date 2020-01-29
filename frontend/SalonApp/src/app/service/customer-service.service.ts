@@ -15,6 +15,7 @@ export class Customer {
     public activeDeactive:number,
     public password:string,
     public cpassword:string,
+    public role:number
   ) { }
 } 
 export class Customer1 {
@@ -28,6 +29,7 @@ export class Customer1 {
     public gender:string,
     public activeDeactive:number,
     public password:string,
+    public role:number
   ) { }
 }
 @Injectable({
@@ -40,18 +42,18 @@ export class CustomerServiceService {
 
   public getCustomerDetails(pk) {
     console.log("test rest api call");
-    return this.httpClient.get<Customer>('http://localhost:8080/salon/customer/profile/'+pk);
+    return this.httpClient.get<Customer>('http://localhost:8080/salon/user/profile/'+pk);
   }
 
   public deactivateCustomer(customer) {
-    return this.httpClient.get<string>('http://localhost:8080/salon/customer/deactivate/' + customer.pk);
+    return this.httpClient.get<string>('http://localhost:8080/salon/user/deactivate/' + customer.pk);
   }
 
   public addCustomer(cust) {
-    return this.httpClient.post<number>('http://localhost:8080/salon/customer/add',cust);
+    return this.httpClient.post<number>('http://localhost:8080/salon/user/add',cust);
   }
 
   public updateCustomerDetails(cust) {
-    return this.httpClient.put<Customer>('http://localhost:8080/salon/customer/update',cust);
+    return this.httpClient.put<Customer>('http://localhost:8080/salon/user/update',cust);
   }
 }

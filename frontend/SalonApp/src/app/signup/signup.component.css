@@ -14,3 +14,14 @@
     background: #ffffff url('../../assets/img/barber.jpg') center fixed no-repeat;
     background-size: cover;
 }
+.ng-invalid.ng-touched:not(form)  {
+    border: 1px solid red;
+  }
+.alert {
+    color: red;
+    font-size: smaller;
+  }
+  form > div {
+    margin-top: 1em;
+  }
+  

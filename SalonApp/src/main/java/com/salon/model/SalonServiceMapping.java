@@ -7,22 +7,35 @@ import javax.persistence.*;
 public class SalonServiceMapping extends AbstractEntity {
 	
 	//data members
-	private int salonMasterPk, serviceMasterPk, serviceCost, homeServiceFlag, activeDeactive, categoryMasterPk;
-
-	public int getSalonMasterPk() {
-		return salonMasterPk;
+	private  Salon salon;
+	private Service service;
+	private int serviceCost, homeServiceFlag, activeDeactive;
+	
+	public SalonServiceMapping() {
+		super();
+		System.out.println("inside salon service mapping def ctor");
+		salon=new Salon();
+		service=new Service();
 	}
 
-	public void setSalonMasterPk(int salonMasterPk) {
-		this.salonMasterPk = salonMasterPk;
+	@ManyToOne
+	@JoinColumn(name="salon_master_pk")
+	public Salon getSalon() {
+		return salon;
 	}
 
-	public int getServiceMasterPk() {
-		return serviceMasterPk;
+	public void setSalon(Salon salon) {
+		this.salon = salon;
 	}
 
-	public void setServiceMasterPk(int serviceMasterPk) {
-		this.serviceMasterPk = serviceMasterPk;
+	@ManyToOne
+	@JoinColumn(name="service_master_pk")
+	public Service getService() {
+		return service;
+	}
+
+	public void setService(Service service) {
+		this.service = service;
 	}
 
 	public int getServiceCost() {
@@ -49,14 +62,11 @@ public class SalonServiceMapping extends AbstractEntity {
 		this.activeDeactive = activeDeactive;
 	}
 
-	public int getCategoryMasterPk() {
-		return categoryMasterPk;
+	@Override
+	public String toString() {
+		return "SalonServiceMapping [salon=" + salon + ", service=" + service + ", serviceCost=" + serviceCost
+				+ ", homeServiceFlag=" + homeServiceFlag + ", activeDeactive=" + activeDeactive + "]";
 	}
-
-	public void setCategoryMasterPk(int categoryMasterPk) {
-		this.categoryMasterPk = categoryMasterPk;
-	}
-	
 
 	
 }
